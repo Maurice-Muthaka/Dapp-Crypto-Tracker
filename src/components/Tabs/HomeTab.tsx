@@ -1,46 +1,79 @@
 import { Table } from "antd";
+import Column from "antd/lib/table/Column";
 import { FC } from "react";
-
-const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-  ];
-  
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      sorter: (a:any, b:any) => a.name - b.name,
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-      sorter: (a:any, b:any) => a.age - b.age,
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-      sorter: (a:any, b:any) => a.address - b.address,
-    },
-  ];
+import { useGetTrendingCoins } from "../../services/api";
 
 const HomeTab: FC = () => {
+    const { trendingCoins, isLoading } = useGetTrendingCoins('USD')
+
+    console.log(trendingCoins)
     return (
         <div className="mt-20">
-            <Table dataSource={dataSource} columns={columns} />;
+            { isLoading ? (
+                <div>
+                    Loading...
+                </div>
+            ) : trendingCoins && (
+                <Table dataSource={trendingCoins}>
+                    <Column
+                        title='Coin'
+                        dataIndex='name'
+                        key='name'
+                        sorter={(a:any, b:any) => a.name - b.name}
+                        render={(text, record) => (
+                            <div className="flex items-center">
+                                <img className="mr-4" src={record.image} width={35} alt={record.name} />
+                                <p>{record.name}</p>
+                            </div>
+                        )}
+                    />
+                    <Column
+                        title='' dataIndex='symbol'
+                        key='symbol'
+                        render={(text, record:any) => (
+                            <p className="uppercase">{record.symbol}</p>
+                        )}
+                    />
+                    <Column
+                        title='Price'
+                        dataIndex='current_price'
+                        key='current_price'
+                        sorter={(a:any, b:any) => a.current_price - b.current_price}
+                        render={(text, record:any) => (
+                            <p className="uppercase">${record.current_price}</p>
+                        )}
+                    />
+                    <Column 
+                        title='24h Volume'
+                        dataIndex='low_24h'
+                        key='low_24h'
+                        sorter={(a:any, b:any) => a.low_24h - b.low_24h}
+                        render={(text, record:any) => (
+                            <p className="uppercase">${record.low_24h}</p>
+                        )}
+                    />
+                    <Column
+                        title='Market Cap'
+                        dataIndex='market_cap'
+                        key='market_cap'
+                        sorter={(a:any, b:any) => a.market_cap - b.market_cap}
+                        render={(text, record:any) => (
+                            <p className="uppercase">${record.market_cap}</p>
+                        )}
+                    />
+                    <Column 
+                        title='Last 7 days'
+                        dataIndex='max_supply'
+                        key='max_supply'
+                        render={(text, record) => (
+                            <div className="flex items-center">
+                                <p>Chart here</p>
+                            </div>
+                        )}
+                    />
+                </Table>
+            )}
+            
         </div>
     )
 }
