@@ -20,7 +20,8 @@ const Navbar: FC<tabProps> = ({ tab, setTab }) => {
     return (
         <div className="border-b border-gray-200 dark:border-gray-900">
             <div className="container mx-auto px-4 flex justify-end">
-               <div className="w-1/2 flex justify-between items-center">
+               <div className="w-full flex justify-between items-center">
+                <div>Test</div>
                 <Tabs onChange={(index:string) => setTab(index)} defaultActiveKey={tab}>
                     <TabPane
                     tab={

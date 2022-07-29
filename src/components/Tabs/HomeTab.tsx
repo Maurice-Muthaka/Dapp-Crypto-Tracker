@@ -1,12 +1,14 @@
 import { Table } from "antd";
 import Column from "antd/lib/table/Column";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useGetTrendingCoins } from "../../services/api";
+import HistoryChart from "../Chart";
 
 const HomeTab: FC = () => {
-    const { trendingCoins, isLoading } = useGetTrendingCoins('USD')
+    const [currency, setCurrency] = useState('USD')
+    const { trendingCoins, isLoading } = useGetTrendingCoins(currency)
 
-    console.log(trendingCoins)
+    // console.log(trendingCoins)
     return (
         <div className="mt-20">
             { isLoading ? (
@@ -65,10 +67,9 @@ const HomeTab: FC = () => {
                         title='Last 7 days'
                         dataIndex='max_supply'
                         key='max_supply'
-                        render={(text, record) => (
-                            <div className="flex items-center">
-                                <p>Chart here</p>
-                            </div>
+                        render={(text, record: any) => (
+                            <HistoryChart currency={currency} id={record.id} />
+                            // <div></div>
                         )}
                     />
                 </Table>

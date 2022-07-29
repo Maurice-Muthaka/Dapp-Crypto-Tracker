@@ -17,3 +17,16 @@ export const useGetTrendingCoins = (currency: string) => {
     trendingCoins: result.data,
   };
 };
+
+export const useGetHistoricalChart = (id: string, days = 365, currency: string) => {
+  const result = useQuery('getHistory', () =>
+    api
+      .get(`${id}/market_chart?vs_currency=${currency}&days=${days}`)
+      .then(res => res.data)
+  );
+
+  return {
+    ...result.data,
+    chartHistory: result.data,
+  };
+};
