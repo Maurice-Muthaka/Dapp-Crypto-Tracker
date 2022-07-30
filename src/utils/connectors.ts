@@ -3,7 +3,7 @@ import { InjectedConnector } from "@web3-react/injected-connector";
 // import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 
 const injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42]
+  supportedChainIds: [1, 3, 4, 5, 42, 80001, 39797]
 });
 
 // const walletconnect = new WalletConnectConnector({
@@ -17,7 +17,7 @@ const injected = new InjectedConnector({
 //   appName: "web3-react-demo"
 // });
 
-export const connectors = {
+export const connectors : any = {
   injected: injected,
 //   walletConnect: walletconnect,
 //   coinbaseWallet: walletlink

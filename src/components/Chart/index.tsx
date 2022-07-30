@@ -1,44 +1,41 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { Line } from 'react-chartjs-2';
+import { FC } from "react";
+import { ResponsiveContainer, AreaChart, CartesianGrid, Area } from 'recharts';
 import { useGetHistoricalChart } from "../../services/api";
 
 interface chartProps {
-    id: string;
+    type: string;
     currency: string;
+    days: number;
+    id: string | undefined | number;
+    width: number | undefined;
+    height: number | undefined;
 }
 
-const HistoryChart: FC<chartProps> = ({ id, currency }) => {
-    const [days, setDays] = useState(1);
+const Chart: FC<chartProps> = ({ type, currency, days, id, width, height }) => {
+    const coinId: any = id?.toString();
+
+    const { chartHistory } = useGetHistoricalChart(coinId, days, currency);
+
+    const data = chartHistory?.map((price : string []) => ({ pv: price[1] }))
     
-    const { chartHistory, isLoading } = useGetHistoricalChart(id, days, currency);
-
-    console.log('chartHistory', chartHistory)
-
-    return (
-        <div className="flex justify-center items-center">
-            {isLoading ? (
-                <h6>Loading...</h6>
-            ) : (
-                <div>
-                    {/* <Line
-                        data={{
-                            datasets: [
-                            {
-                                label: "First dataset",
-                                data: [33, 53, 85, 41, 44, 65],
-                                fill: true,
-                                backgroundColor: "rgba(75,192,192,0.2)",
-                                borderColor: "rgba(75,192,192,1)"
-                            }
-                            ]
-                        }}
-                        redraw={true}
-                    /> */}
-                    Chart
-                </div>
-            )}
-        </div>
-    )
+  return (
+    <div>
+        <ResponsiveContainer width={type === 'full' ? '100%' : width} height={type === 'full' ? '100%' : height} aspect={type === 'full' ? 60 / 30 : 60 / 12 }>
+            <AreaChart data={data}>
+            {type === 'full' && (<CartesianGrid stroke="#eee" />)}
+            <Area
+                strokeWidth={10}
+                type="monotone"
+                dataKey="pv" 
+                yAxisId={1}
+                fill='#131619'
+                opacity={'0.4'}
+                stroke="#82ca9d"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+    </div>
+  );
 }
 
-export default HistoryChart;
+export default Chart;

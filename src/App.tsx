@@ -1,11 +1,10 @@
 import { ThemeProvider } from './contexts/themeContext';
 import './styles/global.css';
-import 'antd/dist/antd.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Web3ReactProvider } from "@web3-react/core";
 import { ethers } from "ethers";
-import Main from './components/Main';
+import Main from './Main';
 
 const queryClient = new QueryClient();
 
