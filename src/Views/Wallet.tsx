@@ -151,17 +151,17 @@ const WalletTab: FC = () => {
                     <div className="mt-10">
                         {trendingCoins?.slice(0, 3).map((coin: Coin) => (
                             <div key={coin.id} className="flex justify-between mb-4">
-                                <div className="flex">
+                                <div className="flex items-center">
                                     <div>
                                         <img className="mr-4" src={coin.image} width={35} alt={coin.name} />
                                     </div>
-                                    <div className="leading-3">
+                                    <div className="leading-6">
                                         <h3 className="dark:text-white font-bold uppercase">{coin.symbol}</h3>
                                         <p className="text-gray-400">{coin.name}</p>
                                     </div>
                                 </div>
                                 
-                                <div className="leading-3 flex flex-col justify-end">
+                                <div className="leading-6 flex flex-col justify-end">
                                     <h3 className="dark:text-white text-right font-bold">{numberWithCommas(coin.atl)}</h3>
                                     <p className="text-gray-400 text-right">${numberWithCommas(coin.current_price)}</p>
                                 </div>
