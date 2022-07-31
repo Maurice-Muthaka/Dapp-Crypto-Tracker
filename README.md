@@ -1,9 +1,11 @@
 # Energi Frontend Challenge :muscle:
 
-Hi!
+## By Maurice Muthaka
 
-Welcome to the Energi Frontend Challenge. All the information you need can be found in #1.
+Hi there, This is the code for the frontend challenge.
 
-Do your best, we are looking forward to seeing what you can do!
+Bellow is the demo video
 
-The Energi Tech Team
+[](url: https://www.loom.com/share/89cbd67292004d669c78a63378387ae7)
+
+
