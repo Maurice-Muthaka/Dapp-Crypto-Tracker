@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ResponsiveContainer, AreaChart, CartesianGrid, Area } from 'recharts';
+import { ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { useGetHistoricalChart } from "../../services/api";
 
 interface chartProps {
@@ -20,7 +20,7 @@ const Chart: FC<chartProps> = ({ type, currency, days, id }) => {
     <div>
         <ResponsiveContainer aspect={type === 'full' ? 60 / 30 : 60 / 12 }>
             <AreaChart data={data}>
-            {/* {type === 'full' && (<CartesianGrid stroke="#999" />)} */}
+ 
             <Area
                 strokeWidth={10}
                 type="monotone"

@@ -83,7 +83,7 @@ export const networkConfigs :any = {
       currencyName: 'MATIC',
       currencySymbol: 'MATIC',
       rpcUrl: 'https://rpc-mumbai.maticvigil.com/',
-      blockExplorerUrl: 'https://polygonscan.com/',
+      blockExplorerUrl: 'https://polygonscan.com',
     },
     39797: {
       chainId: 39797,
@@ -91,7 +91,7 @@ export const networkConfigs :any = {
       currencyName: 'NRG',
       currencySymbol: 'NRG',
       rpcUrl: 'https://nodeapi.energi.network/v1/jsonrpc',
-      blockExplorerUrl: 'https://explorer.energi.network/',
+      blockExplorerUrl: 'https://explorer.energi.network',
     },
   };
   
@@ -99,6 +99,6 @@ export const networkConfigs :any = {
   
   export const getChainById = (chain: any) => networkConfigs[chain]?.chainId || null;
   
-  export const getExplorer = (chain: any) => networkConfigs[chain]?.blockExplorerUrl;
+  export const getExplorer = (chain: any) => networkConfigs[chain]?.blockExplorerUrl || 'https://rinkeby.etherscan.io';
   
   export const getWrappedNative = (chain: any) => networkConfigs[chain]?.wrapped || null;  

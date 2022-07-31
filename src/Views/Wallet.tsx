@@ -43,7 +43,7 @@ const WalletTab: FC = () => {
     };
 
     const checkNetwork = (val:number) => {
-        return [1, 3, 4, 5, 42, 80001, 39797].includes(val);
+        return [39797].includes(val);
     }
 
     useEffect(() => {
@@ -61,7 +61,7 @@ const WalletTab: FC = () => {
         if (provider) activate(connectors[provider]);
 
         if (chainId && !checkNetwork(chainId)) {
-            setMessage({type: 'error', text: `Network not supported, Network id: ${chainId}`})
+            setMessage({type: 'warning', text: `Network ID: ${chainId}. We recommend to use Energi network for better experience  `})
         } else {
             setMessage(null)
         }
@@ -77,7 +77,6 @@ const WalletTab: FC = () => {
         setMessage({type: 'success', text:'Address copied to clipboard'})
     }
     
-
     return (
         <>
         {!isMetamask && (
@@ -93,17 +92,7 @@ const WalletTab: FC = () => {
         {message && (
             <div className="flex justify-center mt-6">
                 <div className="w-full md:w-2/3">
-                <Alert severity={message.type} onClose={() => setMessage(null)}>{message.text}</Alert>
-                    {/* <Alert
-                        message={message.text}
-                        type={message.type}
-                        showIcon
-                        action={
-                          <Button onClick={() => setMessage(null)} size="small" type="text">
-                            <i className="fas fa-times"></i>
-                          </Button>
-                        }
-                    /> */}
+                    <Alert severity={message.type} onClose={() => setMessage(null)}>{message.text}</Alert>
                 </div> 
           </div>
         )}
