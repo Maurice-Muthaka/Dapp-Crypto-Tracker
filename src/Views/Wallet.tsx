@@ -7,6 +7,7 @@ import { getEllipsisTxt, numberWithCommas, wait } from "../utils/functions";
 import { getExplorer, getNativeByChain } from "../utils/networks";
 import { WalletLoad } from "../components/WalletLoad";
 import { Coin } from "../types";
+import AlertTitle from "@mui/material/AlertTitle";
 const image = require('../assets/metamask.png');
 const logo = require('../assets/logo.png');
 
@@ -28,6 +29,8 @@ const WalletTab: FC = () => {
     const { trendingCoins } = useGetTrendingCoins(currency)
     const [message, setMessage] = useState<any>(null);
     const [balance,setBalance]= useState({ inWei: 0, formatted: 0 })
+
+    const isMetamask = window.ethereum && window.ethereum.isMetaMask
 
     const refreshState = () => {
         window.localStorage.setItem("provider", '');
@@ -77,6 +80,16 @@ const WalletTab: FC = () => {
 
     return (
         <>
+        {!isMetamask && (
+            <div className="flex justify-center mt-6">
+                <div className="w-full md:w-2/3">
+                    <Alert  severity='warning'>
+                        <AlertTitle>Metamask</AlertTitle>
+                        To connect your wallet you need to install the Metamask extension.
+                    </Alert>
+                </div>
+            </div>
+        )}
         {message && (
             <div className="flex justify-center mt-6">
                 <div className="w-full md:w-2/3">
@@ -114,7 +127,7 @@ const WalletTab: FC = () => {
         ) : (
             <div className="flex justify-center">
                 <div className="w-full md:w-2/3 flex my-10 px-4 md:px-10 py-6 flex-col justify-center bg-[#f8fbff] dark:bg-[#1A2024] rounded">
-                    <div className="flex justify-between border-b border-gray-200 dark:border-gray-700">
+                    <div className="flex justify-between pb-4 border-b border-gray-200 dark:border-gray-700">
                         <div className="flex">
                             <img className="w-4 h-4 mt-1 mr-2" src={logo} alt="logo" />
                             <h3 className="dark:text-white font-bold">Energi Network</h3>

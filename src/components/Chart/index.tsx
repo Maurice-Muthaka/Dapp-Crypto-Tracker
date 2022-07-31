@@ -7,11 +7,9 @@ interface chartProps {
     currency: string;
     days: number;
     id: string | undefined | number;
-    width: number | undefined;
-    height: number | undefined;
 }
 
-const Chart: FC<chartProps> = ({ type, currency, days, id, width, height }) => {
+const Chart: FC<chartProps> = ({ type, currency, days, id }) => {
     const coinId: any = id?.toString();
 
     const { chartHistory } = useGetHistoricalChart(coinId, days, currency);
@@ -20,9 +18,9 @@ const Chart: FC<chartProps> = ({ type, currency, days, id, width, height }) => {
     
   return (
     <div>
-        <ResponsiveContainer width={type === 'full' ? '100%' : width} height={type === 'full' ? '100%' : height} aspect={type === 'full' ? 60 / 30 : 60 / 12 }>
+        <ResponsiveContainer aspect={type === 'full' ? 60 / 30 : 60 / 12 }>
             <AreaChart data={data}>
-            {type === 'full' && (<CartesianGrid stroke="#eee" />)}
+            {/* {type === 'full' && (<CartesianGrid stroke="#999" />)} */}
             <Area
                 strokeWidth={10}
                 type="monotone"

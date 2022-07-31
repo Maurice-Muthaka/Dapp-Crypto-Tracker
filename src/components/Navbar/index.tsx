@@ -33,7 +33,6 @@ const Navbar: FC = () => {
 
     const toggleTheme = (e: FormEvent) => {
         e.preventDefault();
-        console.log(e)
         setTheme(theme === 'light' ? 'dark' : 'light')
     }
 
@@ -49,7 +48,7 @@ const Navbar: FC = () => {
                         <li className='mr-6 md:mr-4'>
                             <NavLink
                               to="/"
-                              className={({ isActive }) => isActive ? 'flex items-center dark:text-white px-4 pb-4 border-b-4 border-green-600 font-bold text-gray-800' : 'flex items-center pb-2 font-bold text-gray-500'}
+                              className={({ isActive }) => isActive ? 'flex items-center dark:text-white px-4 pb-4 border-b-4 border-green-600 font-bold text-gray-800' : 'flex items-center pb-4 font-bold text-gray-500'}
                             >
                                 <i className='fas fa-home md:mr-4'></i>
                                 <span className="hidden md:block">Home</span>
@@ -58,7 +57,7 @@ const Navbar: FC = () => {
                         <li>
                             <NavLink
                                 to="/wallet" 
-                                className={({ isActive }) => isActive ? 'flex items-center dark:text-white px-4 pb-4 border-b-4 border-green-600 font-bold text-gray-800' : 'flex items-center pb-2 font-bold text-gray-500'}
+                                className={({ isActive }) => isActive ? 'flex items-center dark:text-white px-4 pb-4 border-b-4 border-green-600 font-bold text-gray-800' : 'flex items-center pb-4 font-bold text-gray-500'}
                             >
                                 <i className='fas fa-suitcase md:mr-4'></i>
                                 <span className="hidden md:block">Wallet</span>

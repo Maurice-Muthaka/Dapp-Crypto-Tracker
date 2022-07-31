@@ -9,7 +9,7 @@ export default function ChartPage() {
     
   return (
     <div className="mt-20">
-        <Chart type='full' currency={currency} days={days} id={id} width={800} height={800} />
+        <Chart type='full' currency={currency} days={days} id={id} />
     </div>
   );
 }

@@ -277,8 +277,8 @@ const CoinsTable: React.FC<TableProps> = ({ trendingCoins }) => {
                       <TableCell align="right">${numberWithCommas(row.current_price)}</TableCell>
                       <TableCell align="right">${numberWithCommas(row.market_cap)}</TableCell>
                       <TableCell align="right">${numberWithCommas(row.low_24h)}</TableCell>
-                      <TableCell align="right">
-                        <Chart type='sm' currency={'USD'} days={365} id={row.id} width={100} height={2} />
+                      <TableCell align="right" width={200}>
+                        <Chart type='sm' currency={'USD'} days={365} id={row.id} />
                       </TableCell>
                     </TableRow>
                   );
